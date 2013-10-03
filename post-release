@@ -15,6 +15,13 @@ EOF
 
 set -e
 
+id=$(docker run -i -a stdin $IMAGE /bin/bash -c "test -f /app/circus.ini")
+docker attach $id
+if [ $(docker wait $id) -ne 0 ]; then
+    echo "-----> Skipping Circus ..."
+    exit 0
+fi
+
 echo "-----> Injecting Circus ..."
 
 id=$(echo "$runner" | docker run -i -a stdin $IMAGE /bin/bash -c "cat > /start && /app/.heroku/python/bin/pip install circus")
