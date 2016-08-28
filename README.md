@@ -1,5 +1,7 @@
 # dokku-circus
 
+> Deprecated as of Dokku 0.3.14 (process management) and 0.7.0 (restart policies)
+
 dokku-circus is a plugin for [dokku][dokku] that injects
 [circus][circus] to run applications.
 
